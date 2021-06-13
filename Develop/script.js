@@ -20,10 +20,52 @@ function writePassword() {
     var includeSpecial = window.confirm("Do you want to include special characters?")
     var possibleOptions = []
 
-    if (includeLowerCase && includeUpperCase && includeNumbers && includeNumbers) {
-      possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers, specialCharacters)
-    } 
-    
+    if (includeLowerCase && includeUpperCase && includeNumbers && includeSpecial) {
+      possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers, specialCharacters);
+
+    } else if (includeLowerCase && includeUpperCase && includeNumbers ) {
+    possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers);
+
+    } else if (includeLowerCase && includeUpperCase && includeSpecial ) {
+      possibleOptions = possibleOptions.concat(lowerCase, upperCase, specialCharacters);
+
+    } else if (includeLowerCase && includeSpecial && includeNumbers ) {
+      possibleOptions = possibleOptions.concat(lowerCase, specialCharacters, numbers);
+
+    }else if (includeSpecial && includeUpperCase && includeNumbers ) {
+      possibleOptions = possibleOptions.concat(specialCharacters, upperCase, numbers);
+
+    }else if (includeLowerCase && includeUpperCase) {
+      possibleOptions = possibleOptions.concat(lowerCase, upperCase);
+
+    }else if (includeLowerCase && includeNumbers) {
+      possibleOptions = possibleOptions.concat(lowerCase, numbers);
+
+    }else if (includeLowerCase && includeSpecial) {
+      possibleOptions = possibleOptions.concat(lowerCase, specialCharacters);
+
+    }else if (includeUpperCase && includeNumbers) {
+      possibleOptions = possibleOptions.concat(upperCase, numbers);
+
+    }else if (includeUpperCase && includeSpecial) {
+      possibleOptions = possibleOptions.concat(upperCase, specialCharacters);
+
+    }else if (includeNumbers && includeSpecial) {
+      possibleOptions = possibleOptions.concat(numbers, specialCharacters);
+
+    }else if (includeLowerCase) {
+      possibleOptions = possibleOptions.concat(lowerCase);
+
+    }else if (includeUpperCase) {
+      possibleOptions = possibleOptions.concat(upperCase);
+
+    }else if (includeNumbers) {
+      possibleOptions = possibleOptions.concat(numbers);
+
+    }else if (includeSpecial) {
+      possibleOptions = possibleOptions.concat(specialCharacters);
+
+    }
     console.log(possibleOptions);
 
     // console.log(passwordLength);
