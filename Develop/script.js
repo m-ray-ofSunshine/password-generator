@@ -1,7 +1,7 @@
-var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l","m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperCase = lowerCase.map(a => a.toUpperCase())
-var numbers = ["0","1","2","3","4","5","6","7","8","9"];
-var specialCharacters = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',':','<','=','>','?','@','[',']','\\','^','_','`','{','}','|','~'];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+var specialCharacters = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ':', '<', '=', '>', '?', '@', '[', ']', '\\', '^', '_', '`', '{', '}', '|', '~'];
 
 // Assignment Code
 
@@ -14,70 +14,75 @@ function writePassword() {
 
   function generatePassword() {
     var passwordLength = window.prompt("How long of a password? Choose between 8-128 characters")
+    
+    if (passwordLength > 128 || passwordLength < 8){
+      window.alert("Password length must be within 8 - 128 characters!")
+      return "Try Again";
+    }
+    
     var includeLowerCase = window.confirm("Do you want to include lower case letters?")
     var includeUpperCase = window.confirm("Do you want to include upper case letters?")
     var includeNumbers = window.confirm("Do you want to include numbers 0-9?")
     var includeSpecial = window.confirm("Do you want to include special characters?")
     var possibleOptions = []
+    var passwordInput = []
 
     if (includeLowerCase && includeUpperCase && includeNumbers && includeSpecial) {
       possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers, specialCharacters);
 
-    } else if (includeLowerCase && includeUpperCase && includeNumbers ) {
-    possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers);
+    } else if (includeLowerCase && includeUpperCase && includeNumbers) {
+      possibleOptions = possibleOptions.concat(lowerCase, upperCase, numbers);
 
-    } else if (includeLowerCase && includeUpperCase && includeSpecial ) {
+    } else if (includeLowerCase && includeUpperCase && includeSpecial) {
       possibleOptions = possibleOptions.concat(lowerCase, upperCase, specialCharacters);
 
-    } else if (includeLowerCase && includeSpecial && includeNumbers ) {
+    } else if (includeLowerCase && includeSpecial && includeNumbers) {
       possibleOptions = possibleOptions.concat(lowerCase, specialCharacters, numbers);
 
-    }else if (includeSpecial && includeUpperCase && includeNumbers ) {
+    } else if (includeSpecial && includeUpperCase && includeNumbers) {
       possibleOptions = possibleOptions.concat(specialCharacters, upperCase, numbers);
 
-    }else if (includeLowerCase && includeUpperCase) {
+    } else if (includeLowerCase && includeUpperCase) {
       possibleOptions = possibleOptions.concat(lowerCase, upperCase);
 
-    }else if (includeLowerCase && includeNumbers) {
+    } else if (includeLowerCase && includeNumbers) {
       possibleOptions = possibleOptions.concat(lowerCase, numbers);
 
-    }else if (includeLowerCase && includeSpecial) {
+    } else if (includeLowerCase && includeSpecial) {
       possibleOptions = possibleOptions.concat(lowerCase, specialCharacters);
 
-    }else if (includeUpperCase && includeNumbers) {
+    } else if (includeUpperCase && includeNumbers) {
       possibleOptions = possibleOptions.concat(upperCase, numbers);
 
-    }else if (includeUpperCase && includeSpecial) {
+    } else if (includeUpperCase && includeSpecial) {
       possibleOptions = possibleOptions.concat(upperCase, specialCharacters);
 
-    }else if (includeNumbers && includeSpecial) {
+    } else if (includeNumbers && includeSpecial) {
       possibleOptions = possibleOptions.concat(numbers, specialCharacters);
 
-    }else if (includeLowerCase) {
+    } else if (includeLowerCase) {
       possibleOptions = possibleOptions.concat(lowerCase);
 
-    }else if (includeUpperCase) {
+    } else if (includeUpperCase) {
       possibleOptions = possibleOptions.concat(upperCase);
 
-    }else if (includeNumbers) {
+    } else if (includeNumbers) {
       possibleOptions = possibleOptions.concat(numbers);
 
-    }else if (includeSpecial) {
+    } else if (includeSpecial) {
       possibleOptions = possibleOptions.concat(specialCharacters);
 
+    } else {
+      window.alert('You need to select at least one criteria')
+      return "Try Again";
     }
-    console.log(possibleOptions);
 
-    // console.log(passwordLength);
-    // console.log(includeLowerCase);
-    // console.log(includeUpperCase);
-    // console.log(includeNumbers);
-    // console.log(includeSpecial);
-    
-    // console.log(alphabet[Math.floor(Math.random()*alphabet.length)]);
-    // console.log(numbers[Math.floor(Math.random()*numbers.length)]);
-    // console.log(specialCharecters[Math.floor(Math.random()*specialCharecters.length)]);
-    // console.log(password.value);
+    for (var i = 0; i < passwordLength; i++) {
+      passwordInput.push(possibleOptions[Math.floor(Math.random() * possibleOptions.length)])
+    }
+    return passwordInput.join('')
+
+
   }
 
   passwordText.value = password;
