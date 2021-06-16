@@ -15,9 +15,11 @@ function writePassword() {
   function generatePassword() {
     var possibleOptions = []
     var passwordLength = window.prompt("How long of a password? Choose between 8-128 characters")
-    
-    if (passwordLength > 128 || passwordLength < 8){
-      window.alert("Password length must be within 8 - 128 characters!")
+    var numLength = Number(passwordLength);
+    console.log( numLength)
+
+    if (passwordLength > 128 || passwordLength < 8 || numLength == NaN) {
+      window.alert("Password length must be within 8 - 128 characters and a number!")
       return "Try Again";
     }
     
